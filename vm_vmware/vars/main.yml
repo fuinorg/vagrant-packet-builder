@@ -1,0 +1,16 @@
+################################################
+# Variables required for VMware Vagrant builds #
+################################################
+---
+vm_output_path: "/root"
+required_vars:
+  - vm_name_vmw
+  - vm_upload_url
+  - vm_upload_user
+  - vm_upload_pw
+  - zip_name
+  - git_project_url
+  - git_project_key
+  - packet_project_name
+  - vagrant_vmware_lic_url
+  - vagrant_vmware_lic_file

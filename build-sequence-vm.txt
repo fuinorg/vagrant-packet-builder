@@ -1,0 +1,23 @@
+Title Build a VM with Vagrant
+Jenkins->github.com: clone
+note over github.com: lubuntu-developer-vm
+github.com->Jenkins: ok
+Jenkins->github.com: clone
+note over github.com: vagrant-packet-builder
+github.com->Jenkins: ok
+note over Jenkins: Run Ansible script
+Jenkins->packet.net: create device
+note over packet.net:  Bare Metal Instance
+packet.net->Jenkins: created
+Jenkins->packet.net: build VM
+packet.net->github.com: clone
+note over github.com: lubuntu-developer-vm
+github.com->packet.net: ok
+note over packet.net: Run Vagrant script
+packet.net->Artifactory: upload
+note over Artifactory: VirtualBox or VMware VM
+Artifactory->packet.net: ok
+packet.net->Jenkins: ok
+Jenkins->packet.net: destroy device
+note over packet.net:  Destroy Instance
+packet.net->Jenkins: ok

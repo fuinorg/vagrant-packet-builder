@@ -1,0 +1,73 @@
+#########################################################################
+# Run packer to create VirtualBox VM with Vagrant                       #
+######################################################################### 
+# Copyright (C) 2018 Michael Schnell. All rights reserved.              #
+# http://www.fuin.org/                                                  #
+#                                                                       #
+# This program is free software: you can redistribute it and/or modify  #
+# it under the terms of the GNU General Public License as published by  #
+# the Free Software Foundation, either version 3 of the License, or     #
+# (at your option) any later version.                                   #
+#                                                                       #
+# This program is distributed in the hope that it will be useful,       #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+# GNU General Public License for more details.                          #
+#                                                                       #
+# You should have received a copy of the GNU General Public License     #
+# along with this program.  If not, see <http://www.gnu.org/licenses/>. #
+#########################################################################
+---
+
+# Ensure all necessary values are set
+- name: "Check required variables"
+  fail: msg="Variable '{{ item }}' is not defined"
+  when: item not in vars
+  with_items: "{{ required_vars }}"
+
+# Install virtual box guest plugin
+- name: Install vagrant-vbguest plugin
+  shell: vagrant plugin install vagrant-vbguest 
+
+# Clone Packer project
+- name: Git clone Vagrant project for VirtualBox
+  git:
+    repo: "{{ git_project_url }}"
+    key_file: "{{ git_project_key }}"
+    dest: "/srv/{{ packet_project_name }}/vm_virtualbox"
+
+# Build virtual machine 
+- name: Run Vagrant VirtualBox VM build
+  shell: |
+    vagrant up --provider virtualbox
+    vagrant halt
+  args:
+    chdir: "/srv/{{ packet_project_name }}/vm_virtualbox"
+
+# Cleanup VM directory 
+- name: Remove logs
+  file:
+    path: "{{ vm_path }}/Logs/"
+    state: absent
+
+- name: Delete prev vbox file
+  file:
+    path: "{{ vm_path }}/{{ vm_name_vbx }}.vbox-prev"
+    state: absent
+  register: result_remove_prev
+- debug:
+    var: result_remove_prev
+
+# Create VM archive
+- name: Create VM archive  
+  archive:
+    path: "{{ vm_path }}"
+    dest: "{{ vm_output_path }}/{{ zip_name }}"
+    format: zip
+
+# Upload ZIP to HTTP server
+- name: Upload ZIP to server 
+  shell: 'curl -u"{{ vm_upload_user }}:{{ vm_upload_pw }}" -T "{{ vm_output_path }}/{{ zip_name }}" "{{ vm_upload_url  }}/{{ zip_name }}"'
+  args:
+    warn: false
+  

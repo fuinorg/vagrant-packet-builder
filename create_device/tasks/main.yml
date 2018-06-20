@@ -1,0 +1,56 @@
+#########################################################################
+# Create a new device at packet.net                                     #
+######################################################################### 
+# Copyright (C) 2018 Michael Schnell. All rights reserved.              #
+# http://www.fuin.org/                                                  #
+#                                                                       #
+# This program is free software: you can redistribute it and/or modify  #
+# it under the terms of the GNU General Public License as published by  #
+# the Free Software Foundation, either version 3 of the License, or     #
+# (at your option) any later version.                                   #
+#                                                                       #
+# This program is distributed in the hope that it will be useful,       #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+# GNU General Public License for more details.                          #
+#                                                                       #
+# You should have received a copy of the GNU General Public License     #
+# along with this program.  If not, see <http://www.gnu.org/licenses/>. #
+#########################################################################
+---
+
+# Ensure all necessary values are set
+- name: "Check required variables"
+  fail: msg="Variable '{{ item }}' is not defined"
+  when: item not in vars
+  with_items: "{{ required_vars }}"
+
+# Create server instance
+- packet_device:
+    project_id: "{{ packet_project_id }}"
+    auth_token: "{{ packet_api_token }}"
+    hostnames: "{{ packet_hostname }}"
+    operating_system: "{{ packet_operating_system }}"
+    plan: "{{ packet_plan }}"
+    facility: "{{ packet_facility }}"
+    state: active
+    wait_for_public_IPv: 4
+    wait_timeout: 600
+  register: newhosts
+
+# Wait until we can connect to server instance 
+- name: Wait for SSH to be available
+  wait_for:
+    delay: 1
+    host: "{{ item.public_ipv4 }}"
+    port: 22
+    state: started
+    timeout: 600
+  with_items: "{{ newhosts.devices }}"
+
+# Add host to group 'just_created' 
+- name: Add packet.net instance to group 'just_created'
+  add_host:
+    name: "{{ item.public_ipv4 }}"
+    groups: just_created
+  with_items: "{{ newhosts.devices }}"

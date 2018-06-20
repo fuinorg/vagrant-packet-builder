@@ -1,0 +1,6 @@
+---
+required_vars:
+  - packet_project_id
+  - packet_api_token
+  - packet_hostname
+  

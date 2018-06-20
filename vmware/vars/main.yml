@@ -1,0 +1,9 @@
+########################################################
+# Variables required for installing VMware Workstation #
+########################################################
+---
+vagrant_vmware_utility_url: "https://releases.hashicorp.com/vagrant-vmware-utility/1.0.1/vagrant-vmware-utility_1.0.1_linux_amd64.zip"
+required_vars:
+  - vmware_url
+  - vmware_serialNumber
+  

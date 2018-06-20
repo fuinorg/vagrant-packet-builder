@@ -1,0 +1,6 @@
+---
+required_vars:
+  - git_project_url
+  - cloud_token
+  - packet_project_name
+  - bb_no_release

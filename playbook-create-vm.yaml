@@ -1,0 +1,60 @@
+#########################################################################
+# Creates a new bare-metal server at packet.net and runs a Vagrant      #
+# build on it and destroys the instance at the end.                     #
+######################################################################### 
+# Copyright (C) 2018 Michael Schnell. All rights reserved.              #
+# http://www.fuin.org/                                                  #
+#                                                                       #
+# This program is free software: you can redistribute it and/or modify  #
+# it under the terms of the GNU General Public License as published by  #
+# the Free Software Foundation, either version 3 of the License, or     #
+# (at your option) any later version.                                   #
+#                                                                       #
+# This program is distributed in the hope that it will be useful,       #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+# GNU General Public License for more details.                          #
+#                                                                       #
+# You should have received a copy of the GNU General Public License     #
+# along with this program.  If not, see <http://www.gnu.org/licenses/>. #
+#########################################################################
+---
+
+# Create the remote device
+# The variable 'just_created' has the IP of the new host
+- name: Create device at packet.net
+  hosts: localhost
+  vars:
+    ansible_ssh_private_key_file: "./.ssh/id_rsa"
+    packet_key_file: "./.ssh/id_rsa.pub"
+  tasks:
+    - include_role:
+        name: create_device
+
+# Execute roles 
+- name: Apply roles  
+  hosts: just_created
+  tasks:
+    - include_role:
+        name: vm_virtualbox
+      vars:
+        zip_name: "{{ vm_name_vbx }}.zip"
+        vm_path: "/root/VirtualBox VMs/{{ vm_name_vbx }}"
+      tags:
+        - vm_virtualbox
+    - include_role:
+        name: vm_vmware
+      vars:
+        zip_name: "{{ vm_name_vmw }}.zip"
+        vagrant_vmware_lic_file: "{{ vm_output_path }}/vagrant-vmware-workstation.lic"
+      tags:
+        - vm_vmware
+    
+# Delete the remote device
+- name: Delete device at packet.net
+  hosts: localhost
+  tasks:
+    - include_role:
+        name: delete_device
+      tags:
+        - delete

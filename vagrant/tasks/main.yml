@@ -1,0 +1,48 @@
+#########################################################################
+# Setup for a Vagrant server                                            #
+######################################################################### 
+# Copyright (C) 2018 Michael Schnell. All rights reserved.              #
+# http://www.fuin.org/                                                  #
+#                                                                       #
+# This program is free software: you can redistribute it and/or modify  #
+# it under the terms of the GNU General Public License as published by  #
+# the Free Software Foundation, either version 3 of the License, or     #
+# (at your option) any later version.                                   #
+#                                                                       #
+# This program is distributed in the hope that it will be useful,       #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+# GNU General Public License for more details.                          #
+#                                                                       #
+# You should have received a copy of the GNU General Public License     #
+# along with this program.  If not, see <http://www.gnu.org/licenses/>. #
+#########################################################################
+---
+
+# Equivalent of "apt-get update"
+- name: Update existing packages
+  apt:
+    update_cache: yes
+
+# Install necessary packages for Vagrant
+- name: Install required packages
+  apt: name={{item}} state=present update_cache=yes install_recommends=yes
+  with_items:
+    - gcc
+    - make
+    - git
+    - packer
+    - libxtst6
+    - unzip
+
+# Ensure correct kernel headers are installed
+- name: Verify correct kernel headers
+  shell: "apt-get -y install linux-headers-$(uname -r)"
+  args:
+    warn: false
+
+# Install Vagrant package
+- name: Install Vagrant
+  apt:
+    deb: "{{ vagrant_url }}"
+    install_recommends: yes

@@ -1,0 +1,44 @@
+#########################################################################
+# Run packer to create Vagrant VMware base boxes                        #
+######################################################################### 
+# Copyright (C) 2018 Michael Schnell. All rights reserved.              #
+# http://www.fuin.org/                                                  #
+#                                                                       #
+# This program is free software: you can redistribute it and/or modify  #
+# it under the terms of the GNU General Public License as published by  #
+# the Free Software Foundation, either version 3 of the License, or     #
+# (at your option) any later version.                                   #
+#                                                                       #
+# This program is distributed in the hope that it will be useful,       #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+# GNU General Public License for more details.                          #
+#                                                                       #
+# You should have received a copy of the GNU General Public License     #
+# along with this program.  If not, see <http://www.gnu.org/licenses/>. #
+#########################################################################
+---
+
+# Ensure all necessary values are set
+- name: "Check required variables"
+  fail: msg="Variable '{{ item }}' is not defined"
+  when: item not in vars
+  with_items: "{{ required_vars }}"
+
+# Clone Packer project
+- name: Git clone Packer project for VMware Workstation
+  git:
+    repo: "{{ git_project_url }}"
+    dest: "/srv/{{ packet_project_name }}/bb_vmware"
+    key_file: "{{ git_project_key }}"
+
+# Build for VMware 
+- name: Run Packer VMware Workstation build
+  shell: |
+    packer build \ 
+    -var 'cloud_token={{ cloud_token }}' \
+    -var 'no_release={{ bb_no_release }}' \
+    -only='vmware-build' \
+    /srv/{{ packet_project_name }}/bb_vmware/config.json 
+  args:
+    chdir: "/srv/{{ packet_project_name }}/bb_vmware"

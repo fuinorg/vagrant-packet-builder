@@ -1,0 +1,12 @@
+---
+vm_output_path: "/root"
+required_vars:
+  - vm_name_vbx
+  - vm_upload_url
+  - vm_upload_user
+  - vm_upload_pw
+  - zip_name
+  - vm_path
+  - git_project_url
+  - git_project_key
+  - packet_project_name

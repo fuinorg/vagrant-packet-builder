@@ -1,0 +1,23 @@
+Title Build a base box with Packer
+Jenkins->github.com: clone
+note over github.com: lubuntu-vagrant-base-box
+github.com->Jenkins: ok
+Jenkins->github.com: clone
+note over github.com: vagrant-packet-builder
+github.com->Jenkins: ok
+note over Jenkins: Run Ansible script
+Jenkins->packet.net: create device
+note over packet.net:  Bare Metal Instance
+packet.net->Jenkins: created
+Jenkins->packet.net: build base box
+packet.net->github.com: clone
+note over github.com: lubuntu-vagrant-base-box
+github.com->packet.net: ok
+note over packet.net: Run Packer script
+packet.net->Vagrant Cloud: upload
+note over Vagrant Cloud: Vagrant base box
+Vagrant Cloud->packet.net: ok
+packet.net->Jenkins: ok
+Jenkins->packet.net: destroy device
+note over packet.net:  Destroy Instance
+packet.net->Jenkins: ok

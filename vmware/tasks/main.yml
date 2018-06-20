@@ -1,0 +1,86 @@
+#########################################################################
+# Setup for a VMware Workstation hypervisor                             #
+######################################################################### 
+# Copyright (C) 2018 Michael Schnell. All rights reserved.              #
+# http://www.fuin.org/                                                  #
+#                                                                       #
+# This program is free software: you can redistribute it and/or modify  #
+# it under the terms of the GNU General Public License as published by  #
+# the Free Software Foundation, either version 3 of the License, or     #
+# (at your option) any later version.                                   #
+#                                                                       #
+# This program is distributed in the hope that it will be useful,       #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+# GNU General Public License for more details.                          #
+#                                                                       #
+# You should have received a copy of the GNU General Public License     #
+# along with this program.  If not, see <http://www.gnu.org/licenses/>. #
+#########################################################################
+
+---
+
+# wget can't work via IPv6
+- name: Disable IPv6 with sysctl
+  sysctl: name={{ item }} value=1 state=present
+  with_items:
+    - net.ipv6.conf.all.disable_ipv6
+    - net.ipv6.conf.default.disable_ipv6
+    - net.ipv6.conf.lo.disable_ipv6
+
+# Download bundle file
+- name: Download VMware Workstation
+  get_url:
+    url: "{{ vmware_url }}"
+    dest: /tmp/VMware-Workstation.bundle
+
+# Run installation
+- name: Install VMware Workstation
+  shell: "sh /tmp/VMware-Workstation.bundle --console --required --eulas-agreed --set-setting vmware-workstation serialNumber {{ vmware_serialNumber }}"
+
+# Fix out of memory problem
+# See (https://askubuntu.com/questions/968959/vmplayer-not-enough-memory-after-upgrade-to-17-10-artful-aardvark/969086#969086)
+- name: Patch VMware Installation 
+  copy:
+    src: "{{ role_path }}/files/vmmon.tar"
+    dest: /usr/lib/vmware/modules/source
+
+# Install all vmw-modules
+- name: Recompile VMware kernel modules
+  shell: "vmware-modconfig --console --install-all"
+
+# Install vagrant_vmware_utility
+
+- name: Download vagrant_vmware_utility
+  get_url:
+    url: "{{ vagrant_vmware_utility_url }}"
+    dest: /tmp/vagrant-vmware-utility_linux_amd64.zip
+
+- name: Create vagrant_vmware_utility directory
+  file:
+    path: /opt/vagrant-vmware-utility/bin
+    state: directory
+
+- name: Unzip vagrant_vmware_utility to bin dir
+  unarchive:
+    src: /tmp/vagrant-vmware-utility_linux_amd64.zip
+    dest: /opt/vagrant-vmware-utility/bin
+    remote_src: yes
+
+- name: Generate vagrant_vmware_utility certificates
+  shell: ./vagrant-vmware-utility certificate generate
+  args:
+    chdir: /opt/vagrant-vmware-utility/bin
+
+- name: Install and enable vagrant_vmware_utility service
+  shell: ./vagrant-vmware-utility service install
+  args:
+    chdir: /opt/vagrant-vmware-utility/bin
+
+# Make sure a services are running
+- name: Wait for VMware services to start
+  systemd: state=started name={{item}}
+  with_items:
+    - vmware
+    - vmware-workstation-server
+    - vagrant-vmware-utility
