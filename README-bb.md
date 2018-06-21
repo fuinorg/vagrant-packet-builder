@@ -95,7 +95,7 @@ Be aware that above commands must be on a single command line to execute. Here t
 Here is a brief overview of how this Ansible script actually works.
 
 This example assumes: 
-* Jenkins is used to run this Ansible script
+* Jenkins is used to run this Ansible script (See [Jenkinsfile](https://github.com/fuinorg/lubuntu-vagrant-base-box/blob/master/Jenkinsfile) for details)
 * A Vagrant base box is built based on [lubuntu-vagrant-base-box](https://github.com/fuinorg/lubuntu-vagrant-base-box)
 * Vagrant Cloud is used to store the created virtual machines (VMs)
 
