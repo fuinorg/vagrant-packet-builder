@@ -105,7 +105,7 @@ Be aware that above commands must be on a single command line to execute. Here t
 Here is a brief overview of how this Ansible script actually works.
 
 This example assumes: 
-* Jenkins is used to run this Ansible script
+* Jenkins is used to run this Ansible script (See [Jenkinsfile](https://github.com/fuinorg/lubuntu-developer-vm/blob/master/Jenkinsfile) for details)
 * A VirtualBox or VMware virtual machine (VM) is created using project [lubuntu-developer-vm](https://github.com/fuinorg/lubuntu-developer-vm)
 * Artifactory is used to store the created virtual machines (VMs)
 
