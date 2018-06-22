@@ -38,14 +38,14 @@
     - include_role:
         name: vm_virtualbox
       vars:
-        zip_name: "{{ vm_name_vbx }}.zip"
+        zip_name: "{{ vm_name_vbx }}-{{ artifact_version }}.zip"
         vm_path: "/root/VirtualBox VMs/{{ vm_name_vbx }}"
       tags:
         - vm_virtualbox
     - include_role:
         name: vm_vmware
       vars:
-        zip_name: "{{ vm_name_vmw }}.zip"
+        zip_name: "{{ vm_name_vmw }}-{{ artifact_version }}.zip"
         vagrant_vmware_lic_file: "{{ vm_output_path }}/vagrant-vmware-workstation.lic"
       tags:
         - vm_vmware

@@ -42,7 +42,8 @@ A full example can be found here: https://github.com/fuinorg/lubuntu-developer-v
        "vm_name_vbx":lubuntu_dev_vbx",
        "vm_upload_url":"https://yourcompany.jfrog.io/yourcompany/files/",
        "vm_upload_user":"your-user",
-       "vm_upload_pw":"xxxxxxx"
+       "vm_upload_pw":"xxxxxxx",
+       "artifact_version": "1.0.0"
     }'
    ```
 2. Building only a VM for VirtualBox
@@ -65,7 +66,8 @@ A full example can be found here: https://github.com/fuinorg/lubuntu-developer-v
        "vm_name_vbx":lubuntu_dev_vbx",
        "vm_upload_url":"https://yourcompany.jfrog.io/yourcompany/files/",
        "vm_upload_user":"your-user",
-       "vm_upload_pw":"xxxxxxx"
+       "vm_upload_pw":"xxxxxxx",
+       "artifact_version": "1.0.0"
      }'
    ```
 3. Building only a base image for VMware Workstation
@@ -91,7 +93,8 @@ A full example can be found here: https://github.com/fuinorg/lubuntu-developer-v
        "vm_name_vmw":"lubuntu_dev_vmw",
        "vm_upload_url":"https://yourcompany.jfrog.io/yourcompany/files/",
        "vm_upload_user":"your-user",
-       "vm_upload_pw":"xxxxxxx"
+       "vm_upload_pw":"xxxxxxx",
+       "artifact_version": "1.0.0"
      }'
    ```
 
