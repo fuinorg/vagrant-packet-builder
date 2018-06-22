@@ -48,7 +48,7 @@ Here is a short explanation of the parameters ("--extra-vars") used for the [Ans
 | **packet_api_token** | Token for API at [packet.net](https://www.packet.net/) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
 | **packet_key_file** | Public key file used for SSH at [packet.net](https://www.packet.net/) | ./.ssh/id_rsa.pub |
 | **ansible_ssh_private_key_file** | **Public key file used for SSH at [packet.net](https://www.packet.net/) | ./.ssh/id_rsa |
-| **vmware_serialNumber | Serial number you received when you shopped a VMware Workstation license | XXXXX-XXXXX-XXXXX-XXXXX-XXXXX |
+| **vmware_serialNumber** | Serial number you received when you shopped a VMware Workstation license | XXXXX-XXXXX-XXXXX-XXXXX-XXXXX |
 | **vmware_url** | **URL where you placed a copy of the VMware Workstation installer | https://files.yourcompany-domain-xyz.com/VMware-Workstation-14-Pro-Linux.bundle |
 | **bb_no_release** | Enforce that the new version is **not** released at [Vagrant Cloud](https://app.vagrantup.com/). You need to do the release manually afterwards. | true |
 | **artifact_version** | Version to use for [Vagrant Cloud](https://app.vagrantup.com/) or the Virtual Machine ZIP file | 1.0.0 |
