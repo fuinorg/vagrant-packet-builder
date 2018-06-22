@@ -37,7 +37,9 @@ A full example can be found here: https://github.com/fuinorg/lubuntu-vagrant-bas
        "ansible_ssh_private_key_file": "./.ssh/id_rsa",
        "vmware_serialNumber":"XXXXX-XXXXX-XXXXX-XXXXX-XXXXX",
        "vmware_url":"https://files.yourcompany-domain-xyz.com/VMware-Workstation-14-Pro-Linux.bundle",
-       "bb_no_release": true
+       "bb_no_release": "true",
+       "artifact_version": "1.0.0",
+       "artifact_description": "Updated packages"
      }'
    ```
 2. Building only a base image for VirtualBox
@@ -58,7 +60,9 @@ A full example can be found here: https://github.com/fuinorg/lubuntu-vagrant-bas
        "packet_api_token": "xxxxxx",
        "packet_key_file": "./.ssh/id_rsa.pub",
        "ansible_ssh_private_key_file": "./.ssh/id_rsa",
-       "bb_no_release": true
+       "bb_no_release": "true",
+       "artifact_version": "1.0.0",
+       "artifact_description": "Updated packages"
      }'
    ```
 3. Building only a base image for VMware Workstation
@@ -81,7 +85,9 @@ A full example can be found here: https://github.com/fuinorg/lubuntu-vagrant-bas
        "ansible_ssh_private_key_file": "./.ssh/id_rsa",
        "vmware_serialNumber":"XXXXX-XXXXX-XXXXX-XXXXX-XXXXX",
        "vmware_url":"https://files.yourcompany-domain-xyz.com/VMware-Workstation-14-Pro-Linux.bundle",
-       "bb_no_release": true
+       "bb_no_release": "true",
+       "artifact_version": "1.0.0",
+       "artifact_description": "Updated packages"
      }'
    ```
 

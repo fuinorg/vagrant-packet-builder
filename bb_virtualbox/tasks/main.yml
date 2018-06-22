@@ -36,8 +36,10 @@
 - name: Run Packer VirtualBox build
   shell: |
     packer build \ 
-    -var 'cloud_token={{ cloud_token }}' \
-    -var 'no_release={{ bb_no_release }}' \
+    -var 'cloud_token="{{ cloud_token }}"' \
+    -var 'cloud_no_release="{{ bb_no_release | lower }}"' \
+    -var 'cloud_version="{{ artifact_version }}"' \
+    -var 'cloud_version_description="{{ artifact_description }}"' \
     -only='virtualbox-build' \
     /srv/{{ packet_project_name }}/bb_virtualbox/config.json 
   args:
