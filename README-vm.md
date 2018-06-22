@@ -39,7 +39,7 @@ A full example can be found here: https://github.com/fuinorg/lubuntu-developer-v
        "vmware_url":"https://files.yourcompany-domain-xyz.com/VMware-Workstation-14-Pro-Linux.bundle",
        "vagrant_vmware_lic_url":"https://files.yourcompany-domain-xyz.com/vmware-workstation.lic",
        "vm_name_vmw":"lubuntu_dev_vmw",
-       "vm_name_vbx":lubuntu_dev_vbx",
+       "vm_name_vbx":"lubuntu_dev_vbx",
        "vm_upload_url":"https://yourcompany.jfrog.io/yourcompany/files/",
        "vm_upload_user":"your-user",
        "vm_upload_pw":"xxxxxxx",
