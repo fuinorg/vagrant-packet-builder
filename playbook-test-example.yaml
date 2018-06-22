@@ -1,0 +1,14 @@
+---
+# ansible-playbook playbook-test.yaml -i '<ip>,'​
+
+- name: DELETE VMW TMP FILES
+  hosts: <ip>
+  tasks:
+    - name: Find temporary files
+      find:
+        paths: "/root/lubuntu_dev_vmw"
+        patterns: "*.nvram,*.log,*.vmxf,*.vmsd,metadata.json,Vagrantfile"
+      register: vmw_tmp_files_result    
+    - name: Debug vmw_tmp_files_result
+      debug:
+        var: vmw_tmp_files_result.files
