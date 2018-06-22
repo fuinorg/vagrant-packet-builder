@@ -71,12 +71,12 @@
 - name: Find temporary files
   find:
     paths: "{{ vm_output_path }}/{{ vm_name_vmw }}"
-    patterns: "*.nvram,*.log,*.vmxf,metadata.json,Vagrantfile"
+    patterns: "*.nvram,*.log,*.vmxf,*.vmsd,metadata.json,Vagrantfile"
   register: vmw_tmp_files_result
 
 - name: Remove temporary files
   file:
-    path: "{{ item }}"
+    path: "{{ item.path }}"
     state: absent
   with_items: "{{ vmw_tmp_files_result.files }}"
   register: result_remove_tmp
