@@ -58,6 +58,11 @@
 - debug:
     var: result_remove_prev
 
+- name: Patch vbox file
+  shell: |
+    xmlstarlet ed -P -L -d "/_:VirtualBox/_:Machine/_:ExtraData" "{{ vm_path }}/{{ vm_name_vbx }}.vbox"
+    xmlstarlet ed -P -L -d "/_:VirtualBox/_:Machine/_:Hardware/_:SharedFolders" "{{ vm_path }}/{{ vm_name_vbx }}.vbox"
+
 # Create VM archive
 - name: Create VM archive  
   archive:

@@ -34,6 +34,7 @@
     - packer
     - libxtst6
     - unzip
+    - xmlstarlet
 
 # Ensure correct kernel headers are installed
 - name: Verify correct kernel headers
