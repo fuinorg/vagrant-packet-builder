@@ -81,6 +81,9 @@
   with_items: "{{ vmw_tmp_files_result.files }}"
   register: result_remove_tmp
 
+- name: Patch VMX file 
+  script: "{{ role_path }}/files/replace-vmx.sh {{ vm_output_path }}/{{ vm_name_vmw }}"
+
 # Create VM archive
 - name: Create VM archive  
   archive:
