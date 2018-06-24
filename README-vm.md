@@ -100,7 +100,7 @@ A full example can be found here: https://github.com/fuinorg/lubuntu-developer-v
 
 ## Debugging on the server
 You can also add more `--skip-tags` 
-* `vm_zip` to avoid uploading the ZIP to a file server (**Caution**: Always use together with `vm_upload` otherwise ther is nothing to upload)   
+* `vm_zip` to avoid creating a ZIP file (**Caution**: Always use together with `vm_upload` otherwise there is nothing to upload...)   
 * `vm_upload` to avoid uploading the ZIP to a file server  
 * `delete` to keep the server instance running after some kind of failure 
 This allows debugging something directly on packet.net.
