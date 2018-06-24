@@ -41,6 +41,6 @@
     -var 'cloud_version={{ artifact_version }}' \
     -var 'cloud_version_description={{ artifact_description }}' \
     -only='virtualbox-build' \
-    /srv/{{ packet_project_name }}/bb_virtualbox/config.json 
+    /srv/{{ packet_project_name }}/bb_virtualbox/config.json 2>&1 | tee ./packer.log 
   args:
     chdir: "/srv/{{ packet_project_name }}/bb_virtualbox"
