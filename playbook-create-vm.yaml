@@ -36,6 +36,8 @@
   hosts: just_created
   tasks:
     - include_role:
+        name: virtualbox
+    - include_role:
         name: vm_virtualbox
       vars:
         zip_name: "{{ vm_name_vbx }}-{{ artifact_version }}.zip"
