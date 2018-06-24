@@ -40,7 +40,9 @@
 - name: Run Vagrant VirtualBox VM build
   shell: |
     vagrant up --provider virtualbox 2>&1 | tee ./vagrant.log
-    vagrant halt
+    vagrant vbguest --do install 2>&1 | tee ./vagrant.log
+    vagrant reload 2>&1 | tee ./vagrant.log
+    vagrant halt 2>&1 | tee ./vagrant.log
   args:
     chdir: "/srv/{{ packet_project_name }}/vm_virtualbox"
 
