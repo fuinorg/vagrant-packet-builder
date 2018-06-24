@@ -39,7 +39,7 @@
 # Build virtual machine 
 - name: Run Vagrant VirtualBox VM build
   shell: |
-    vagrant up --provider virtualbox
+    vagrant up --provider virtualbox 2>&1 | tee ./vagrant.log
     vagrant halt
   args:
     chdir: "/srv/{{ packet_project_name }}/vm_virtualbox"

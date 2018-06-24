@@ -49,7 +49,7 @@
 # Build virtual machine 
 - name: Run Vagrant VMware VM build
   shell: |
-    vagrant up --provider vmware_workstation
+    vagrant up --provider vmware_workstation 2>&1 | tee ./vagrant.log
     vagrant halt
   args:
     chdir: "/srv/{{ packet_project_name }}/vm_vmware"
