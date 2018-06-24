@@ -90,9 +90,14 @@
     path: "{{ vm_output_path }}/{{ vm_name_vmw }}"
     dest: "{{ vm_output_path }}/{{ zip_name }}"
     format: zip
+  tags:
+    - vm_zip
 
 # Upload ZIP to HTTP server
 - name: Upload ZIP to server 
   shell: 'curl -u"{{ vm_upload_user }}:{{ vm_upload_pw }}" -T "{{ vm_output_path }}/{{ zip_name }}" "{{ vm_upload_url  }}/{{ zip_name }}"'
   args:
     warn: false
+  tags:
+    - vm_upload
+    
