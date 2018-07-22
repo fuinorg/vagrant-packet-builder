@@ -33,7 +33,10 @@
     - git
     - packer
     - libxtst6
+    - zip 
     - unzip
+    - gzip
+    - gunzip
     - xmlstarlet
 
 # Ensure correct kernel headers are installed

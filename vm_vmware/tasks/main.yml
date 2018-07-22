@@ -89,7 +89,7 @@
   archive:
     path: "{{ vm_output_path }}/{{ vm_name_vmw }}"
     dest: "{{ vm_output_path }}/{{ zip_name }}"
-    format: zip
+    format: gz
   tags:
     - vm_zip
 
