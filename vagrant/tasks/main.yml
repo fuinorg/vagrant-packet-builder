@@ -28,6 +28,7 @@
 - name: Install required packages
   apt: name={{item}} state=present update_cache=yes install_recommends=yes
   with_items:
+    - linux-headers-generic
     - gcc
     - make
     - git
@@ -35,12 +36,6 @@
     - libxtst6
     - unzip
     - xmlstarlet
-
-# Ensure correct kernel headers are installed
-- name: Verify correct kernel headers
-  shell: "apt-get -y install linux-headers-$(uname -r)"
-  args:
-    warn: false
 
 # Install Vagrant package
 - name: Install Vagrant
