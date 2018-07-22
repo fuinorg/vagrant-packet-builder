@@ -20,15 +20,10 @@
 ---
 
 # Equivalent of "apt-get update"
-- name: Update existing packages
+- name: Update package index files
   apt:
     update_cache: yes
 
-# Equivalent of "apt-get dist-upgrade"
-- name: Dist upgrade
-  apt:
-    upgrade: dist
-    
 # Install necessary packages for Vagrant
 - name: Install required packages
   apt: name={{item}} state=present update_cache=yes install_recommends=yes
