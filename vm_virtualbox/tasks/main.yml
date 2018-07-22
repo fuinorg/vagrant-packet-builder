@@ -72,10 +72,19 @@
   tags:
     - vm_zip
 
+# Get VM archive checksum
+- name: Get VM archive checksum
+  stat:
+    path: "{{ vm_output_path }}/{{ zip_name }}"
+  register: st
+  tags:
+    - vm_upload
+
 # Upload ZIP to HTTP server
 - name: Upload ZIP to server 
-  shell: 'curl -u"{{ vm_upload_user }}:{{ vm_upload_pw }}" -T "{{ vm_output_path }}/{{ zip_name }}" "{{ vm_upload_url  }}/{{ zip_name }}"'
+  shell: 'curl -u"{{ vm_upload_user }}:{{ vm_upload_pw }}" -H "X-Checksum-Sha1:{{st.stat.checksum}}" -T "{{ vm_output_path }}/{{ zip_name }}" "{{ vm_upload_url  }}/{{ zip_name }}"'
   args:
     warn: false
   tags:
     - vm_upload
+
