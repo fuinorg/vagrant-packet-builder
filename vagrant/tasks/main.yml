@@ -36,7 +36,6 @@
     - zip 
     - unzip
     - gzip
-    - gunzip
     - xmlstarlet
 
 # Ensure correct kernel headers are installed
