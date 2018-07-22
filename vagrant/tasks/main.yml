@@ -35,7 +35,6 @@
     - libxtst6
     - zip 
     - unzip
-    - gzip
     - xmlstarlet
 
 # Ensure correct kernel headers are installed
