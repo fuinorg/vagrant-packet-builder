@@ -56,7 +56,7 @@ Here is a short explanation of the parameters ("--extra-vars") used for the [Ans
 | **vagrant_vmware_lic_url** | URL where you placed a copy of the license file you received when you shopped a [Vagrant VMware plugin](https://www.vagrantup.com/vmware) license | https://files.yourcompany-domain-xyz.com/vmware-workstation.lic |
 | **vm_name_vmw** | Name to use for a VMware Workstation virtual machine | lubuntu_dev_vmw |
 | **vm_name_vbx** | Name to use for a VirtualBox virtual machine | lubuntu_dev_vbx |
-| **vm_upload_url** | URL for uploading the virtual machine ZIP archive | https://yourcompany.jfrog.io/yourcompany/files/ |
+| **vm_upload_url** | URL for uploading the virtual machine ZIP archive | https://yourcompany.jfrog.io/yourcompany/files/ or ftp://ftp.yourcompany.com |
 | **vm_upload_user** | User for virtual machine ZIP archive upload | your-user |
 | **vm_upload_pw** | Password for virtual machine ZIP archive upload  | xxxxx |
 | **vm_upload_options** | Settings for the upload [curl](https://curl.haxx.se/) statement | --ftp-ssl |
