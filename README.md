@@ -43,7 +43,7 @@ Here is a short explanation of the parameters ("--extra-vars") used for the [Ans
 | **packet_project_id** | ID of the project at [packet.net](https://www.packet.net/) | 12345678-1234-1234-1234-123456789abc |
 | **packet_plan** | Selects the service plan to provision your device at [packet.net](https://www.packet.net/) | baremetal_0 | 
 | **packet_facility** | Location of the [packet.net](https://www.packet.net/) data center | ams1 | 
-| **packet_operating_system** | Operating system for [packet.net](https://www.packet.net/) server instance | ubuntu_17_10 | 
+| **packet_operating_system** | Operating system for [packet.net](https://www.packet.net/) server instance | ubuntu_18_04 | 
 | **packet_hostname** | Instance name for server at [packet.net](https://www.packet.net/) | vagrant-builder-1234 | 
 | **packet_api_token** | Token for API at [packet.net](https://www.packet.net/) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
 | **packet_key_file** | Public key file used for SSH at [packet.net](https://www.packet.net/) | ./.ssh/id_rsa.pub |
