@@ -43,6 +43,7 @@ A full example can be found here: https://github.com/fuinorg/lubuntu-developer-v
        "vm_upload_url":"https://yourcompany.jfrog.io/yourcompany/files/",
        "vm_upload_user":"your-user",
        "vm_upload_pw":"xxxxxxx",
+       "vm_upload_options":"",
        "artifact_version": "1.0.0"
     }'
    ```
@@ -67,6 +68,7 @@ A full example can be found here: https://github.com/fuinorg/lubuntu-developer-v
        "vm_upload_url":"https://yourcompany.jfrog.io/yourcompany/files/",
        "vm_upload_user":"your-user",
        "vm_upload_pw":"xxxxxxx",
+       "vm_upload_options":"",
        "artifact_version": "1.0.0"
      }'
    ```
@@ -94,6 +96,7 @@ A full example can be found here: https://github.com/fuinorg/lubuntu-developer-v
        "vm_upload_url":"https://yourcompany.jfrog.io/yourcompany/files/",
        "vm_upload_user":"your-user",
        "vm_upload_pw":"xxxxxxx",
+       "vm_upload_options":"",
        "artifact_version": "1.0.0"
      }'
    ```

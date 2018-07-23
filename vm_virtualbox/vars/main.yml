@@ -5,6 +5,7 @@ required_vars:
   - vm_upload_url
   - vm_upload_user
   - vm_upload_pw
+  - vm_upload_options
   - zip_name
   - vm_path
   - git_project_url
