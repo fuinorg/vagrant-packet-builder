@@ -43,7 +43,7 @@ Here is a short explanation of the parameters ("--extra-vars") used for the [Ans
 | **packet_project_id** | ID of the project at [packet.net](https://www.packet.net/) | 12345678-1234-1234-1234-123456789abc |
 | **packet_plan** | Selects the service plan to provision your device at [packet.net](https://www.packet.net/) | baremetal_0 | 
 | **packet_facility** | Location of the [packet.net](https://www.packet.net/) data center | ams1 | 
-| **packet_operating_system** | Operating system for [packet.net](https://www.packet.net/) server instance | ubuntu_18_04 | 
+| **packet_operating_system** | Operating system for [packet.net](https://www.packet.net/) server instance. [DEPRECATED](https://github.com/fuinorg/vagrant-packet-builder/issues/13) | ubuntu_18_04 | 
 | **packet_hostname** | Instance name for server at [packet.net](https://www.packet.net/) | vagrant-builder-1234 | 
 | **packet_api_token** | Token for API at [packet.net](https://www.packet.net/) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
 | **packet_key_file** | Public key file used for SSH at [packet.net](https://www.packet.net/) | ./.ssh/id_rsa.pub |
@@ -59,6 +59,7 @@ Here is a short explanation of the parameters ("--extra-vars") used for the [Ans
 | **vm_upload_url** | URL for uploading the virtual machine ZIP archive | https://yourcompany.jfrog.io/yourcompany/files/ |
 | **vm_upload_user** | User for virtual machine ZIP archive upload | your-user |
 | **vm_upload_pw** | Password for virtual machine ZIP archive upload  | xxxxx |
+| **vm_upload_options** | Settings for the upload [curl](https://curl.haxx.se/) statement | --ftp-ssl |
 
 ## Credits
 Many thanks to [Arseniy](https://github.com/ashemenev/) who created the base for this scripts. You can hire him as a freelancer at [upwork.com](https://www.upwork.com/freelancers/~018e862d2f68accf3b/) (Only visible to Upwork customers).
